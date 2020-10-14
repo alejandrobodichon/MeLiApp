@@ -1,7 +1,9 @@
 package com.dev.meliapp.util
 
 import android.app.Activity
+import android.app.AlertDialog
 import android.content.Context
+import android.content.DialogInterface
 import android.view.View
 import android.view.inputmethod.InputMethodManager
 import android.widget.ImageView
@@ -48,6 +50,14 @@ fun ImageView.loadImage(uri: String?, progressDrawable: CircularProgressDrawable
 @BindingAdapter("android:imageUrl")
 fun loadImage(view: ImageView, url: String?){
     view.loadImage(url, getProgressDrawable(view.context))
+}
+
+fun alertDialog(context: Context, text: String, onAcceptClick: DialogInterface.OnClickListener){
+    val builder = AlertDialog.Builder(context)
+    builder.setMessage(text)
+    builder.setPositiveButton("Aceptar", onAcceptClick)
+    builder.setCancelable(false)
+    builder.show()
 }
 
 fun String.stringToPrice(currency: String?): String? {

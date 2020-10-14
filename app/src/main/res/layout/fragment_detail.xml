@@ -16,6 +16,7 @@
         android:fillViewport="true">
 
         <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/clDetail"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             tools:context=".view.DetailFragment">
@@ -31,12 +32,12 @@
                 android:id="@+id/tvDetailTitle"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:background="#EDEDED"
+                android:background="@color/gray_background"
                 android:paddingHorizontal="@dimen/default_margin"
-                android:paddingVertical="5dp"
+                android:paddingVertical="@dimen/small_margin_5"
                 android:text="@{product.title}"
-                android:textColor="#000000"
-                android:textSize="25sp"
+                android:textColor="@color/black_char"
+                android:textSize="@dimen/medium_char_25"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/vPager" />
@@ -45,12 +46,12 @@
                 android:id="@+id/tvDetailPrice"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:background="#EDEDED"
+                android:background="@color/gray_background"
                 android:paddingHorizontal="@dimen/default_margin"
-                android:paddingVertical="5dp"
+                android:paddingVertical="@dimen/small_margin_5"
                 android:text="@{product.formattedPrice}"
-                android:textColor="#000000"
-                android:textSize="30sp"
+                android:textColor="@color/black_char"
+                android:textSize="@dimen/medium_char_30"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/tvDetailTitle" />
@@ -60,10 +61,10 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:paddingHorizontal="@dimen/default_margin"
-                android:paddingVertical="5dp"
-                android:text="Descripción"
-                android:textColor="#2E2E2E"
-                android:textSize="22sp"
+                android:paddingVertical="@dimen/small_margin_5"
+                android:text="@string/description"
+                android:textColor="@color/gray_char"
+                android:textSize="@dimen/medium_char_22"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/tvDetailPrice" />
@@ -72,9 +73,9 @@
                 android:id="@+id/rvAttributes"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
-                app:layout_constraintTop_toBottomOf="@id/tvDescription"
-                />
+                tools:listitem="@layout/item_description"
+                android:overScrollMode="never"
+                app:layout_constraintTop_toBottomOf="@id/tvDescription" />
 
             <ProgressBar
                 android:id="@+id/pgLoadingView"

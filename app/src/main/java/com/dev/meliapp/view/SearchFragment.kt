@@ -32,7 +32,7 @@ class SearchFragment : Fragment() {
                 rvProducts.visibility = View.VISIBLE
                 listAdapter.updateProductList(it)
             } else {
-                tvListError.text = "No se encontraron productos."
+                tvListError.text = getString(R.string.no_products)
                 tvListError.visibility = View.VISIBLE
             }
         }
@@ -47,7 +47,7 @@ class SearchFragment : Fragment() {
     private val errorDataObserver = Observer<Boolean> { isError ->
         tvListError.visibility = if (isError) View.VISIBLE else View.GONE
         if (isError) {
-            tvListError.text = "Hubo un error en la carga del listado, intente nuevamente."
+            tvListError.text = getString(R.string.search_error)
             pgLoadingView.visibility = View.GONE
             rvProducts.visibility = View.GONE
         }
@@ -62,7 +62,7 @@ class SearchFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        (requireActivity() as AppCompatActivity).supportActionBar?.title = "Buscar"
+        (requireActivity() as AppCompatActivity).supportActionBar?.title = getString(R.string.search)
 
         viewModel = ViewModelProviders.of(this).get(SearchViewModel::class.java)
         viewModel.products.observe(this, productListDataObserver)

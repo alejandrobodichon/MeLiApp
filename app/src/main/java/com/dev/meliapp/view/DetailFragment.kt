@@ -1,5 +1,6 @@
 package com.dev.meliapp.view
 
+import android.content.DialogInterface
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -10,10 +11,10 @@ import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
 import androidx.recyclerview.widget.GridLayoutManager
-import androidx.recyclerview.widget.LinearLayoutManager
 import com.dev.meliapp.R
 import com.dev.meliapp.databinding.FragmentDetailBinding
 import com.dev.meliapp.model.ProductModel
+import com.dev.meliapp.util.alertDialog
 import com.dev.meliapp.viewmodel.DetailViewModel
 import kotlinx.android.synthetic.main.fragment_detail.*
 
@@ -27,22 +28,22 @@ class DetailFragment : Fragment() {
     private val productDetailDataObserver = Observer<ProductModel>{ product ->
         product?.let {
             renderView(it)
+            clDetail.visibility = View.VISIBLE
         }
     }
 
     private val loadingDataObserver = Observer<Boolean>{ isLoading ->
         pgLoadingView.visibility = if (isLoading) View.VISIBLE else View.GONE
         if (isLoading){
-//            tvListError.visibility = View.GONE
-//            rvProducts.visibility = View.GONE
+            clDetail.visibility = View.GONE
         }
     }
 
     private val errorDataObserver = Observer<Boolean>{ isError ->
-//        tvListError.visibility = if (isError) View.VISIBLE else View.GONE
         if (isError){
+            alertDialog(requireContext(),getString(R.string.detail_error), DialogInterface.OnClickListener { _, _ -> requireActivity().onBackPressed() })
             pgLoadingView.visibility = View.GONE
-//            rvProducts.visibility = View.GONE
+            clDetail.visibility = View.GONE
         }
     }
 
@@ -55,7 +56,7 @@ class DetailFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        (requireActivity() as AppCompatActivity).supportActionBar?.title = "Detalle"
+        (requireActivity() as AppCompatActivity).supportActionBar?.title = getString(R.string.detail)
 
         viewModel = ViewModelProviders.of(this).get(DetailViewModel::class.java)
         viewModel.productDetail.observe(this, productDetailDataObserver)

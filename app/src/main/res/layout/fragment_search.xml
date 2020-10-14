@@ -5,7 +5,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#FFFFFF"
+    android:background="@color/white_background"
     tools:context=".view.SearchFragment">
 
     <EditText
@@ -15,12 +15,11 @@
         android:layout_marginStart="@dimen/default_margin"
         android:layout_marginTop="@dimen/default_margin"
         android:layout_marginEnd="@dimen/default_margin"
-        android:hint="Buscar en Mercado Libre"
+        android:hint="@string/meli_search"
         android:imeOptions="actionSearch"
         android:inputType="text"
         android:singleLine="true"
         android:background="@null"
-        android:elevation="3dp"
         android:paddingVertical="@dimen/default_margin"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -28,8 +27,8 @@
 
     <ImageView
         android:id="@+id/ivClose"
-        android:layout_width="30dp"
-        android:layout_height="30dp"
+        android:layout_width="@dimen/medium_margin_30"
+        android:layout_height="@dimen/medium_margin_30"
         android:src="@drawable/ic_close"
         android:visibility="gone"
         app:layout_constraintTop_toTopOf="@id/etSearch"
@@ -39,8 +38,8 @@
     <View
         android:id="@+id/vSeparator"
         android:layout_width="match_parent"
-        android:layout_height="1dp"
-        android:background="#C1C1C1"
+        android:layout_height="@dimen/small_margin_1"
+        android:background="@color/gray_separator"
         app:layout_constraintBottom_toBottomOf="@id/etSearch" />
 
     <androidx.recyclerview.widget.RecyclerView

@@ -21,8 +21,8 @@
 
         <ImageView
             android:id="@+id/ivProduct"
-            android:layout_width="100dp"
-            android:layout_height="100dp"
+            android:layout_width="@dimen/big_margin_100"
+            android:layout_height="@dimen/big_margin_100"
             android:imageUrl="@{product.thumbnail}"
             android:layout_marginBottom="@dimen/default_margin"
             android:scaleType="centerCrop"
@@ -37,7 +37,7 @@
             android:layout_height="wrap_content"
             android:text="@{product.title}"
             android:layout_marginStart="@dimen/default_margin"
-            android:textSize="15sp"
+            android:textSize="@dimen/small_char_15"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toEndOf="@id/ivProduct"
             app:layout_constraintTop_toTopOf="parent" />
@@ -49,7 +49,7 @@
             android:layout_marginTop="@dimen/default_margin"
             android:text="@{product.formattedPrice}"
             android:layout_marginStart="@dimen/default_margin"
-            android:textSize="20sp"
+            android:textSize="@dimen/small_char_20"
             android:textStyle="bold"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toEndOf="@id/ivProduct"
@@ -58,8 +58,8 @@
         <View
             android:id="@+id/vSeparator"
             android:layout_width="match_parent"
-            android:layout_height="1dp"
-            android:background="#C1C1C1"
+            android:layout_height="@dimen/small_margin_1"
+            android:background="@color/gray_separator"
             app:layout_constraintBottom_toBottomOf="parent" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
