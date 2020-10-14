@@ -9,10 +9,6 @@ import androidx.recyclerview.widget.RecyclerView
 import com.dev.meliapp.R
 import com.dev.meliapp.databinding.ItemProductBinding
 import com.dev.meliapp.model.ProductModel
-import com.dev.meliapp.util.getProgressDrawable
-import com.dev.meliapp.util.loadImage
-import com.dev.meliapp.util.stringToPrice
-import kotlinx.android.synthetic.main.item_product.view.*
 
 class ProductListAdapter(private val productList: ArrayList<ProductModel>):
     RecyclerView.Adapter<ProductListAdapter.ProductViewHolder>(), ProductClickListener {
@@ -39,13 +35,12 @@ class ProductListAdapter(private val productList: ArrayList<ProductModel>):
     override fun getItemCount() = productList.size
 
     override fun onClick(view: View) {
-        productList.forEach {
-            if (view.tag == it.id){
-                val action = SearchFragmentDirections.actionSearchFragmentToDetailFragment(it)
-                Navigation.findNavController(view).navigate(action)
+        productList.forEach { productModel ->
+            if (view.tag == productModel.id){
+                productModel.id?.let {
+                    val action = SearchFragmentDirections.actionSearchFragmentToDetailFragment(it)
+                    Navigation.findNavController(view).navigate(action) }
             }
         }
     }
-
-
 }

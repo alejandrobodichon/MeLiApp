@@ -1,6 +1,9 @@
 package com.dev.meliapp.util
 
+import android.app.Activity
 import android.content.Context
+import android.view.View
+import android.view.inputmethod.InputMethodManager
 import android.widget.ImageView
 import androidx.databinding.BindingAdapter
 import androidx.swiperefreshlayout.widget.CircularProgressDrawable
@@ -10,6 +13,7 @@ import com.dev.meliapp.R
 import java.text.DecimalFormat
 import java.text.DecimalFormatSymbols
 import java.util.*
+
 
 const val ARS = "ARS"
 const val USD = "USD"
@@ -22,9 +26,18 @@ fun getProgressDrawable(context: Context): CircularProgressDrawable {
     }
 }
 
+fun hideKeyboard(activity: Activity) {
+    val view: View = activity.findViewById(android.R.id.content)
+    view?.let {
+        val imm = activity.getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
+        imm.hideSoftInputFromWindow(view.windowToken, 0)
+    }
+}
+
 fun ImageView.loadImage(uri: String?, progressDrawable: CircularProgressDrawable) {
     val options = RequestOptions()
         .placeholder(progressDrawable)
+        .centerCrop()
         .error(R.mipmap.ic_launcher_round)
     Glide.with(context)
         .setDefaultRequestOptions(options)

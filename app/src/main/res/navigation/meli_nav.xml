@@ -20,8 +20,8 @@
         android:label="fragment_detail"
         tools:layout="@layout/fragment_detail" >
         <argument
-            android:name="product"
-            app:argType="com.dev.meliapp.model.ProductModel" />
+            android:name="productId"
+            app:argType="string" />
         <action
             android:id="@+id/action_detailFragment_to_searchFragment"
             app:destination="@id/searchFragment" />

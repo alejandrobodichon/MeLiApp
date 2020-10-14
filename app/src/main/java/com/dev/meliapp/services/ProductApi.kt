@@ -1,6 +1,7 @@
 package com.dev.meliapp.services
 
 import com.dev.meliapp.model.ApiResult
+import com.dev.meliapp.model.ProductModel
 import io.reactivex.Single
 import retrofit2.http.GET
 import retrofit2.http.Path
@@ -11,5 +12,5 @@ interface ProductApi {
     fun getProductsByName(@Query("q") name: String): Single<ApiResult>
 
     @GET("items/{productId}")
-    fun getProductDetail(@Path("productId") productId: String): Single<ApiResult>
+    fun getProductDetail(@Path("productId") productId: String): Single<ProductModel>
 }
