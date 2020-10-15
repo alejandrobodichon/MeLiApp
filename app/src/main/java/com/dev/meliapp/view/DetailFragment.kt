@@ -29,7 +29,7 @@ class DetailFragment : Fragment() {
         product?.let {
             renderView(it)
             clDetail.visibility = View.VISIBLE
-        }
+        }?: run{ showError() }
     }
 
     private val loadingDataObserver = Observer<Boolean>{ isLoading ->
@@ -41,7 +41,7 @@ class DetailFragment : Fragment() {
 
     private val errorDataObserver = Observer<Boolean>{ isError ->
         if (isError){
-            alertDialog(requireContext(),getString(R.string.detail_error), DialogInterface.OnClickListener { _, _ -> requireActivity().onBackPressed() })
+            showError()
             pgLoadingView.visibility = View.GONE
             clDetail.visibility = View.GONE
         }
@@ -84,5 +84,9 @@ class DetailFragment : Fragment() {
         product.attributes?.let {
             attributeListAdapter.updateAttributeList(it)
         }
+    }
+
+    private fun showError(){
+        alertDialog(requireContext(),getString(R.string.detail_error), DialogInterface.OnClickListener { _, _ -> requireActivity().onBackPressed() })
     }
 }
